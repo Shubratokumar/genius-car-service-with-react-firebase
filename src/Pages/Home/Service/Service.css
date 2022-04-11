@@ -14,17 +14,17 @@ img{
     color: #070707;
     text-align: center;
 }
-button{
+.btn{
     border: none;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: 5px;
     background: linear-gradient(90deg, rgb(7, 0, 143) 0%, rgb(38, 38, 240) 35%, rgba(0,212,255,1) 100%);
     font-size: 16px;
     font-weight: bolder;
     color: rgb(245, 245, 245);
 }
-button:hover{
-    background: #E15FED;
+.btn:hover{
+    background: #640ce7;
     transition: background ease-in-out 0.3s;
     cursor: pointer;
 }
