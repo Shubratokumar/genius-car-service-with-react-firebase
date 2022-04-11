@@ -1,0 +1,42 @@
+.service-container{
+    border: 1px solid rgb(162, 0, 255);
+    border-radius: 20px;
+    background-color: #f7f6f2;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 255, 255, 0.308), 0 6px 20px 0 rgba(0, 255, 255, 0.301);
+}
+img{
+    width: 414px;
+    border-radius: 20px 20px 0 0;
+}
+.service-description{
+    padding: 15px;
+    color: #070707;
+    text-align: center;
+}
+button{
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgb(7, 0, 143) 0%, rgb(38, 38, 240) 35%, rgba(0,212,255,1) 100%);
+    font-size: 16px;
+    font-weight: bolder;
+    color: rgb(245, 245, 245);
+}
+button:hover{
+    background: #E15FED;
+    transition: background ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+/* responsive design for services */
+@media only screen and (max-width : 576px) {
+    img{
+        width: 100%;
+        /* width: 350px; */
+    }
+}
+/* responsive design for services */
+@media only screen and (min-width : 577px) and (max-width : 992px) {
+    
+}
