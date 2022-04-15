@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import logo from "../../../images/logo.png";
@@ -9,8 +9,9 @@ import toast from "react-hot-toast";
 import "./Header.css";
 
 const Header = () => {
+  
   const [user] = useAuthState(auth);
-  if(user){
+  /* if(user){
     console.log(user)
     toast.success('Successfully created!!! from header', {
       duration: 4000,
@@ -19,7 +20,7 @@ const Header = () => {
           color: 'white'
       },
   });
-  }
+  } */
 
   const handleSignOut = () => {
     signOut(auth);

@@ -2,10 +2,11 @@ import React, { useRef } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import './Login.css';
 import SocialLogin from "../SocialLogin/SocialLogin";
+import { toast } from 'react-hot-toast';
+import './Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -17,12 +18,20 @@ const Login = () => {
         signInWithEmailAndPassword,
         user
       ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
     // redirect 
     let from = location.state?.from?.pathname || "/";
 
     if(user){
         navigate(from, { replace: true });
+        toast.success("Successfully Login !!!")
+    }
+
+    const resetPassword = async() =>{
+      const email = emailRef.current.value;
+      await sendPasswordResetEmail(email);
+      toast.success("Sent Email!!!")
     }
     const handleSubmit = event =>{
         event.preventDefault();
@@ -42,11 +51,12 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Control ref={passwordRef} type="password" placeholder="Password" required/>
         </Form.Group>
-        <Button  variant="primary" type="submit">
+        <Button  variant="primary w-50 mb-2 d-block mx-auto" type="submit">
           LogIn
         </Button>
       </Form>
-      <p>New to Car Doctor? <Link to='/register' className='text-decoration-none text-danger'>Please Register</Link></p>
+      <p>New to Car Doctor? <Link to='/register' className='text-decoration-none text-primary'>Please Register</Link></p>
+      <p>Forgot Password? <Link to='/register' onClick={resetPassword} className='text-decoration-none text-primary'>Reset Password</Link></p>
       <SocialLogin></SocialLogin>      
     </div>
   );

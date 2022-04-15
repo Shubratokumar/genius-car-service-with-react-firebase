@@ -2,7 +2,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    gap: 20px;
+    gap: 20px;    
+}
+#services{
+    margin-top: 20px;
+    scroll-margin-top: 77px;
 }
 
 /* responsive design for services */

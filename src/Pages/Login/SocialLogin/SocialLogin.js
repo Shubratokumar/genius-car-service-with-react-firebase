@@ -37,18 +37,13 @@ const SocialLogin = () => {
               'aria-live': 'polite',
             },
           }); */
-        /* toast.success('Successfully created!!!', {
+        toast.success('Successfully created!!!', {
             duration: 4000,
             style: {
                 background:'black',
                 color: 'white'
-            },
-            // Change colors of success/error/loading icon
-            iconTheme: {
-              primary: '#000',
-              secondary: '#fff',
             }
-        }); */
+        });
     }
     if(error || error1 || error2){
         toast.error('This is an error!!!');
