@@ -24,20 +24,25 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
 
     if(user){
-        navigate(from, { replace: true });
-        toast.success("Successfully Login !!!")
+      navigate(from, { replace: true });
+      toast.success("Successfully Login !!!")
     }
 
     const resetPassword = async() =>{
       const email = emailRef.current.value;
-      await sendPasswordResetEmail(email);
-      toast.success("Sent Email!!!")
+      if(email){
+        await sendPasswordResetEmail(email);
+        toast.success("Sent Email!!!")
+      }
+      else{
+        toast('Please enter your email !!!')
+      }
     }
     const handleSubmit = event =>{
-        event.preventDefault();
-        const email = emailRef.current.value;
-        const password = passwordRef.current.value;
-        signInWithEmailAndPassword(email, password);
+      event.preventDefault();
+      const email = emailRef.current.value;
+      const password = passwordRef.current.value;
+      signInWithEmailAndPassword(email, password);
     }
 
   return (
@@ -56,7 +61,7 @@ const Login = () => {
         </Button>
       </Form>
       <p>New to Car Doctor? <Link to='/register' className='text-decoration-none text-primary'>Please Register</Link></p>
-      <p>Forgot Password? <Link to='/register' onClick={resetPassword} className='text-decoration-none text-primary'>Reset Password</Link></p>
+      <p>Forgot Password? <button onClick={resetPassword} className='link-btn btn btn-link text-decoration-none text-primary'>Reset Password</button></p>
       <SocialLogin></SocialLogin>      
     </div>
   );

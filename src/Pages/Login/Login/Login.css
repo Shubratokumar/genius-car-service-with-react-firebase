@@ -1,0 +1,7 @@
+.link-btn{
+    border: none;
+    background-image: none;
+}
+.link-btn:hover{
+    background: none;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './Register.css';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { toast } from 'react-hot-toast';
@@ -10,27 +10,26 @@ const Register = () => {
     const navigate = useNavigate();
     const [agree, setAgree] = useState(false)
 
-    const [createUserWithEmailAndPassword,user] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword,user] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+    const [updateProfile] = useUpdateProfile(auth);
 
-      if(user){
-        navigate('/home');
-        toast.success("Successfully Registered!!!")
-      }
+    if(user){
+    navigate('/home');
+    }
 
     const navigateLogin = () =>{
         navigate('/login');
     }
 
-    const handleRegister = event =>{
+    const handleRegister = async(event) =>{
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
         // const agree = event.target.terms.checked;
-        if(agree){
-            createUserWithEmailAndPassword(email, password);
-        }
-
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({displayName: name})
+        toast.success("Successfully Registered!!!")
     }
     return (
         <div className='register-form'>

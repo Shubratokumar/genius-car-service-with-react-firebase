@@ -11,6 +11,7 @@ import "./Header.css";
 const Header = () => {
   
   const [user] = useAuthState(auth);
+
   /* if(user){
     console.log(user)
     toast.success('Successfully created!!! from header', {
