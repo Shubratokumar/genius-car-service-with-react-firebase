@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { toast } from 'react-hot-toast';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Register = () => {
     }
     return (
         <div className='register-form'>
+            <PageTitle title="Register"></PageTitle>
             <h2 className='text-info text-center my-3'>Please Register!!!</h2>
             <form onSubmit={handleRegister}>
                 <input type="text" name ='name' placeholder='Your Name' />

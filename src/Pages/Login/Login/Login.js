@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import SocialLogin from "../SocialLogin/SocialLogin";
 import { toast } from 'react-hot-toast';
 import './Login.css';
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -47,6 +48,7 @@ const Login = () => {
 
   return (
     <div className="container w-50 mx-auto">
+      <PageTitle title="login"></PageTitle>
       <h2 className="text-info text-center mt-2">Please Login </h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

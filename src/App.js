@@ -10,7 +10,7 @@ import Register from "./Pages/Login/Register/Register";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import Checkout from "./Pages/Checkout/Checkout";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -18,20 +18,35 @@ function App() {
       <Header></Header>
       <Toaster></Toaster>
       <Routes>
-        <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/home" element={<Home></Home>}></Route>
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Home></Home>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/home"
+          element={
+            <RequireAuth>
+              <Home></Home>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route
           path="/service/:serviceId"
           element={<ServiceDetail></ServiceDetail>}
         ></Route>
-        <Route 
-          path="/checkout" 
+        <Route
+          path="/checkout"
           element={
             <RequireAuth>
               <Checkout></Checkout>
             </RequireAuth>
-            }></Route>
+          }
+        ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
