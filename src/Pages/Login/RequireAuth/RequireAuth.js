@@ -11,7 +11,7 @@ import Loading from "../../Shared/Loading/Loading";
 const RequireAuth = ({ children }) => {
   const [user, loading] = useAuthState(auth);
   const [sendEmailVerification] = useSendEmailVerification(auth);
-  console.log(user);
+  
   const location = useLocation();
 
   if (loading) {
@@ -21,7 +21,8 @@ const RequireAuth = ({ children }) => {
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
-  if (!user.emailVerified) {
+  console.log(user);
+  if (user?.providerData[0]?.providerId === "password" && !user?.emailVerified) {
     return (
       <div className="text-center">
         <h2 className="text-danger">Your email is not verified !!!</h2>

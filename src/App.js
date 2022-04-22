@@ -11,6 +11,7 @@ import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import Checkout from "./Pages/Checkout/Checkout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Toaster } from "react-hot-toast";
+import AddServices from "./Pages/AddServices/AddServices";
 
 function App() {
   return (
@@ -21,17 +22,24 @@ function App() {
         <Route
           path="/"
           element={
-            <RequireAuth>
+            <>
+            <Home></Home>
+            {/* <RequireAuth>
               <Home></Home>
-            </RequireAuth>
+            </RequireAuth> */}
+            </>
+            
           }
         ></Route>
         <Route
           path="/home"
           element={
-            <RequireAuth>
+            <>
+            <Home></Home>
+            {/* <RequireAuth>
               <Home></Home>
-            </RequireAuth>
+            </RequireAuth> */}
+            </>            
           }
         ></Route>
         <Route path="/about" element={<About></About>}></Route>
@@ -44,6 +52,14 @@ function App() {
           element={
             <RequireAuth>
               <Checkout></Checkout>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/addservice"
+          element={
+            <RequireAuth>
+              <AddServices></AddServices>
             </RequireAuth>
           }
         ></Route>
