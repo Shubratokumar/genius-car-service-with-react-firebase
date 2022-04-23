@@ -12,6 +12,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Toaster } from "react-hot-toast";
 import AddServices from "./Pages/AddServices/AddServices";
+import ManageServices from "./Pages/ManageServices/ManageServices";
 
 function App() {
   return (
@@ -60,6 +61,14 @@ function App() {
           element={
             <RequireAuth>
               <AddServices></AddServices>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/manage"
+          element={
+            <RequireAuth>
+              <ManageServices></ManageServices>
             </RequireAuth>
           }
         ></Route>
