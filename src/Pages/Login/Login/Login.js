@@ -8,6 +8,8 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import { toast } from 'react-hot-toast';
 import './Login.css';
 import PageTitle from "../../Shared/PageTitle/PageTitle";
+import axios from "axios";
+import { AiFillEyeInvisible } from 'react-icons/ai';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -25,8 +27,8 @@ const Login = () => {
     let from = location.state?.from?.pathname || "/";
 
     if(user){
-      navigate(from, { replace: true });
-      toast.success("Successfully Login !!!")
+      // navigate(from, { replace: true });
+      // toast.success("Successfully Login !!!")
     }
 
     const resetPassword = async() =>{
@@ -39,12 +41,18 @@ const Login = () => {
         toast('Please enter your email !!!')
       }
     }
-    const handleSubmit = event =>{
+    const handleSubmit = async(event) =>{
       event.preventDefault();
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
-      signInWithEmailAndPassword(email, password);
-    }
+
+      await signInWithEmailAndPassword(email, password);
+      // const response = await axios.post('http://localhost:5000/login', {email});
+      const {data} = await axios.post('http://localhost:5000/login', {email});
+      localStorage.setItem('accessToken', data.accessToken);
+      navigate(from, { replace: true });
+      toast.success("Successfully Login !!!")
+    };
 
   return (
     <div className="container w-50 mx-auto">
@@ -56,7 +64,8 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Control ref={passwordRef} type="password" placeholder="Password" required/>
+          <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
+          <div><p>See Password <AiFillEyeInvisible/></p></div>
         </Form.Group>
         <Button  variant="primary w-50 mb-2 d-block mx-auto" type="submit">
           LogIn

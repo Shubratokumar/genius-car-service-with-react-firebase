@@ -13,6 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Toaster } from "react-hot-toast";
 import AddServices from "./Pages/AddServices/AddServices";
 import ManageServices from "./Pages/ManageServices/ManageServices";
+import Order from "./Pages/Order/Order";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           }
         ></Route>
         <Route path="/about" element={<About></About>}></Route>
+        <Route path="/orders" element={<Order/>}></Route>
         <Route
           path="/service/:serviceId"
           element={<ServiceDetail></ServiceDetail>}
