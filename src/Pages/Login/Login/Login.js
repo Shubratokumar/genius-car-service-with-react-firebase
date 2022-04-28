@@ -11,8 +11,9 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import { toast } from "react-hot-toast";
 import "./Login.css";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
-import axios from "axios";
+// import axios from "axios";
 // import { AiFillEyeInvisible } from 'react-icons/ai';
+import useToken from './../../../hooks/useToken';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,12 +24,13 @@ const Login = () => {
   const [signInWithEmailAndPassword, user] =
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [token] = useToken(user);
 
   // redirect
   let from = location.state?.from?.pathname || "/";
 
-  if (user) {
-    // navigate(from, { replace: true });
+  if (token) {
+    navigate(from, { replace: true });
     // toast.success("Successfully Login !!!")
   }
 
@@ -48,12 +50,7 @@ const Login = () => {
 
     await signInWithEmailAndPassword(email, password);
     // const response = await axios.post('https://obscure-fjord-94626.herokuapp.com/login', {email});
-    const { data } = await axios.post(
-      "https://obscure-fjord-94626.herokuapp.com/login",
-      { email }
-    );
-    console.log(data.accessToken)
-    localStorage.setItem("accessToken", data.accessToken);
+    
     navigate(from, { replace: true });
     toast.success("Successfully Login !!!");
   };

@@ -6,14 +6,16 @@ import { useSignInWithGoogle, useSignInWithFacebook, useSignInWithGithub } from 
 import auth from '../../../firebase.init';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-hot-toast';
+import useToken from './../../../hooks/useToken';
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
     const [signInWithFacebook, user1, loading1, error1] = useSignInWithFacebook(auth);
     const [signInWithGithub, user2, loading2, error2] = useSignInWithGithub(auth);
     const navigate = useNavigate();
+    const [token] = useToken(user || user1 || user2);
     
-    if(user || user1 || user2){
+    if(token){
         navigate("/home");
         /* toast('Hello World', {
             duration: 4000,

@@ -6,15 +6,16 @@ import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { toast } from 'react-hot-toast';
 import PageTitle from '../../Shared/PageTitle/PageTitle';
+import useToken from './../../../hooks/useToken';
 
 const Register = () => {
     const navigate = useNavigate();
-    const [agree, setAgree] = useState(false)
-
+    const [agree, setAgree] = useState(false);
     const [createUserWithEmailAndPassword,user] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
     const [updateProfile] = useUpdateProfile(auth);
+    const [token] = useToken(user);
 
-    if(user){
+    if(token){
     navigate('/home');
     }
 
